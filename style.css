@@ -2,28 +2,21 @@ body {
   margin: 0;
   color: #333;
   padding: 20px;
+  user-select: none;
   text-align: center;
   background: #f0f8ff;
   font-family: Arial, sans-serif;
 }
 .container {
-  padding: 20px;
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 500px;
   background: #fff;
+  padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h1 {
-  font-size: 2em;
-  color: #007acc;
-}
-.controls {
-  margin: 20px 0;
-}
 label {
   font-weight: bold;
-  margin-right: 10px;
 }
 input[type="number"] {
   width: 50px;
@@ -33,16 +26,16 @@ input[type="number"] {
 button {
   color: #fff;
   border: none;
+  padding: 10px;
   cursor: pointer;
-  padding: 10px 20px;
-  background: #007acc;
   border-radius: 5px;
+  background: #007acc;
 }
 button:hover {
   background: #005f99;
 }
 #tableContainer {
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: left;
 }
 table {
@@ -50,20 +43,18 @@ table {
   margin: 0 auto;
   border-collapse: collapse;
 }
-td, th {
-  padding: 8px;
-  font-size: 20px;
-  text-align: center;
-  word-spacing: 30px;
-  border: 1px solid #ddd;
-}
 tr:nth-child(even) {
   background: #f2f2f2;
 }
 tr:hover {
+  cursor: pointer;
   background: #ddd;
 }
-th {
-  color: white;
-  background: #007acc;
+td {
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  word-spacing: 30px;
+  border: 1px solid #ddd;
 }
