@@ -15,7 +15,7 @@ function generateTable() {
     </tr>
   `;
 
-  for (let i = 2; i <= 12; i++) {
+  for (let i = 1; i <= 10; i++) {
     tableHTML += `
       <tr>
         <td>${tableNumber} x ${i} = ${tableNumber * i}</td>
