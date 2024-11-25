@@ -1,5 +1,18 @@
-const getNumbers = e => JSON.parse(localStorage.getItem('numbers')) ?? [];
-const setNumbers = numbers => localStorage.setItem('numbers', JSON.stringify(numbers));
+const getNumbers = e => JSON.parse(localStorage.getItem('table-numbers')) ?? [];
+const saveNumbers = numbers => localStorage.setItem('table-numbers', JSON.stringify(numbers));
+
+const getNumber = e => localStorage.getItem('table-number') ?? 2;
+const saveNumber = number => localStorage.setItem('table-number', number);
+
+document.querySelector('#tc').addEventListener('click', e => {
+    if (e.target.tagName === 'TD') {
+        e.target.querySelector('span').classList.toggle('hide');
+    }
+});
+
+document.querySelector('#t').addEventListener('keyup', e => {
+    saveNumber(document.querySelector('#t').value);
+});
 
 const shuffle = a => {
   for (let i = a.length - 1; i > 0; i--) {
@@ -25,7 +38,7 @@ const gt = (force = false) => {
             }
         }
         shuffle(numbers);
-        setNumbers(numbers);
+        saveNumbers(numbers);
     }
     for (n of numbers) {
         th += `<tr><td>${t} x ${n} = <span class="hide">${t * n}</span></td></tr>`;
@@ -33,10 +46,7 @@ const gt = (force = false) => {
     document.querySelector('#tc').innerHTML = th;
 };
 
-gt();
-
-document.querySelector('#tc').addEventListener('click', e => {
-    if (e.target.tagName === 'TD') {
-        e.target.querySelector('span').classList.toggle('hide');
-    }
-});
+(e => {
+    document.querySelector('#t').value = getNumber();
+    gt();
+})();
