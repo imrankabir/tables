@@ -1,8 +1,5 @@
-const getNumbers = e => JSON.parse(localStorage.getItem('table-numbers')) ?? [];
-const saveNumbers = numbers => localStorage.setItem('table-numbers', JSON.stringify(numbers));
-
-const getNumber = e => localStorage.getItem('table-number') ?? 2;
-const saveNumber = number => localStorage.setItem('table-number', number);
+const get = (k, d) => JSON.parse(localStorage.getItem(`tables-${k}`)) ?? d;
+const set = (k, v) => localStorage.setItem(`tables-${k}`, JSON.stringify(v));
 
 document.querySelector('#tc').addEventListener('click', e => {
     if (e.target.tagName === 'TD') {
@@ -11,7 +8,7 @@ document.querySelector('#tc').addEventListener('click', e => {
 });
 
 document.querySelector('#t').addEventListener('keyup', e => {
-    saveNumber(document.querySelector('#t').value);
+    set('number', document.querySelector('#t').value);
 });
 
 const shuffle = a => {
@@ -29,7 +26,7 @@ const gt = (force = false) => {
         return;
     }
     let th = '';
-    let numbers = getNumbers();
+    let numbers = get('numbers', []);
     if (numbers.length === 0 || force === true) {
         numbers = [];
         for (let i = 1; i <= 10; i++) {
@@ -38,7 +35,7 @@ const gt = (force = false) => {
             }
         }
         shuffle(numbers);
-        saveNumbers(numbers);
+        set('numbers', numbers);
     }
     for (n of numbers) {
         th += `<tr><td>${t} x ${n} = <span class="hide">${t * n}</span></td></tr>`;
@@ -47,6 +44,6 @@ const gt = (force = false) => {
 };
 
 (e => {
-    document.querySelector('#t').value = getNumber();
+    document.querySelector('#t').value = get('number', 2);
     gt();
 })();
