@@ -1,15 +1,8 @@
 const get = (k, d) => JSON.parse(localStorage.getItem(`tables-${k}`)) ?? d;
 const set = (k, v) => localStorage.setItem(`tables-${k}`, JSON.stringify(v));
 
-document.querySelector('#tc').addEventListener('click', e => {
-    if (e.target.tagName === 'TD') {
-        e.target.querySelector('span').classList.toggle('hide');
-    }
-});
-
-document.querySelector('#t').addEventListener('keyup', e => {
-    set('number', document.querySelector('#t').value);
-});
+document.querySelector('#tc').addEventListener('click', e => e.target.tagName === 'TD' && e.target.querySelector('span').classList.toggle('hide'));
+document.querySelector('#t').addEventListener('keyup', e => set('number', document.querySelector('#t').value));
 
 const shuffle = a => {
   for (let i = a.length - 1; i > 0; i--) {
@@ -30,7 +23,7 @@ const gt = (force = false) => {
     if (numbers.length === 0 || force === true) {
         numbers = [];
         for (let i = 1; i <= 10; i++) {
-            if (Math.random() > .5) {
+            if (Math.random() > .2) {
                 numbers.push(i);
             }
         }
